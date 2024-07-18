@@ -1,2 +1,2 @@
 <?php
-//index page
+get_header();

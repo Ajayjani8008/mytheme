@@ -1117,7 +1117,7 @@ abstract class Forminator_Base_Form_Model {
 	 * @return self|Forminator_Form_Model|Forminator_Poll_Model|Forminator_Quiz_Model|WP_Error
 	 * @since 1.4
 	 */
-	public static function create_from_import_data( $import_data ) {
+	public static function create_from_import_data( $import_data, $name = '' ) {
 		$class = static::class;
 
 		if ( Forminator::is_import_integrations_feature_enabled() ) {
@@ -1164,6 +1164,10 @@ abstract class Forminator_Base_Form_Model {
 
 			if ( empty( $meta['settings']['formName'] ) ) {
 				throw new Exception( esc_html__( 'Invalid format of import data name', 'forminator' ) );
+			}
+
+			if ( $name ) {
+				$meta['settings']['formName'] = $name;
 			}
 
 			$form_name = $meta['settings']['formName'];
@@ -1218,10 +1222,12 @@ abstract class Forminator_Base_Form_Model {
 			 * @param int $post_id - module id.
 			 * @param string $post_status - module status.
 			 * @param object $model - module model.
+			 * @param array $import_data - Import data.
 			 *
 			 * @since 1.11
+			 * @since 1.32 Added the `$import_data` parameter.
 			 */
-			do_action( 'forminator_' . $type . '_action_imported', $post_id, $post_status, $model );
+			do_action( 'forminator_' . $type . '_action_imported', $post_id, $post_status, $model, $import_data );
 
 			// Call do action after create imported module
 			self::module_update_do_action( $type, $post_id, $model );

@@ -46,7 +46,7 @@ function forminator_is_user_allowed( $slug = '' ) {
  * @return bool
  */
 function forminator_array_value_exists( $array, $key ) {
-	return ( isset( $array[ $key ] ) && ! empty( $array[ $key ] ) );
+	return isset( $array[ $key ] ) && ( ! empty( $array[ $key ] ) || in_array( $array[ $key ], array( 0, '0' ), true ) );
 }
 
 /**
@@ -118,6 +118,20 @@ function forminator_ajax_url() {
  */
 function forminator_validate_ajax( $action, $query_arg = false, $page_slug = '' ) {
 	if ( ! check_ajax_referer( $action, $query_arg, false ) || ! forminator_is_user_allowed( $page_slug ) ) {
+		wp_send_json_error( esc_html__( 'Invalid request, you are not allowed to do that action.', 'forminator' ) );
+	}
+}
+
+/**
+ * Checks if the AJAX call is valid
+ *
+ * @param string $action Action name.
+ * @param string|bool $query_arg Query arg.
+ *
+ * @return void
+ */
+function forminator_validate_nonce_ajax( $action, $query_arg = false ) {
+	if ( ! check_ajax_referer( $action, $query_arg, false ) ) {
 		wp_send_json_error( esc_html__( 'Invalid request, you are not allowed to do that action.', 'forminator' ) );
 	}
 }
@@ -1153,6 +1167,25 @@ function forminator_is_show_branding() {
 }
 
 /**
+ * Check if whitelabel enable.
+ *
+ * @return bool
+ */
+function forminator_can_whitelabel() {
+	if (
+		! class_exists( '\WPMUDEV_Dashboard' ) ||
+		! isset( \WPMUDEV_Dashboard::$whitelabel ) ||
+		( method_exists( \WPMUDEV_Dashboard::$whitelabel, 'can_whitelabel' ) &&
+		  ! \WPMUDEV_Dashboard::$whitelabel->can_whitelabel()
+		)
+	) {
+		return false;
+	}
+
+	return true;
+}
+
+/**
  * Get Dashboard settings
  *
  * @since 1.6.3
@@ -1616,6 +1649,7 @@ function forminator_get_capabilities() {
 	return array(
 		'manage_forminator_modules',
 		'manage_forminator_submissions',
+		'manage_forminator_templates',
 		'manage_forminator_addons',
 		'manage_forminator_integrations',
 		'manage_forminator_reports',
@@ -1688,6 +1722,11 @@ function forminator_get_permission( $page_slug ) {
 
 			$cap = 'manage_forminator_submissions';
 			break;
+
+		case 'forminator-templates':
+			$cap = 'manage_forminator_templates';
+			break;
+
 		case 'forminator-addons':
 
 			$cap = 'manage_forminator_addons';

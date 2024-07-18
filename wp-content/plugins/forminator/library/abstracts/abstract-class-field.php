@@ -296,34 +296,12 @@ abstract class Forminator_Field {
 	 * @return string
 	 */
 	public static function get_description( $description, $get_id = '' ) {
-		$html         = '';
-		$allowed_html = array();
-		$id = $get_id . '-description';
+		$html = '';
 		if ( ! empty( $description ) ) {
-			$allowed_html = apply_filters(
-				'forminator_field_description_allowed_html',
-				array(
-					'a'      => array(
-						'href'   => true,
-						'title'  => true,
-						'target' => true,
-						'rel'    => true,
-					),
-					'span'   => array(
-						'class' => true,
-					),
-					'br'     => array(),
-					'em'     => array(),
-					'strong' => array(),
-				),
-				$description,
-				$get_id
-			);
-
 			$html .= sprintf(
 				'<span id="%s" class="forminator-description">%s</span>',
 				esc_attr( $get_id . '-description' ),
-				wp_kses( $description, $allowed_html )
+				self::esc_description( $description, $get_id )
 			);
 		}
 
@@ -331,9 +309,40 @@ abstract class Forminator_Field {
 			'forminator_field_description',
 			$html,
 			$description,
-			$get_id,
-			$allowed_html
+			$get_id
 		);
+	}
+
+	/**
+	 * Escape description
+	 *
+	 * @param string $description Description.
+	 * @param string $field_id      Field ID.
+	 *
+	 * @return string
+	 */
+	public static function esc_description( $description, $field_id ) {
+		$allowed_html = apply_filters(
+			'forminator_field_description_allowed_html',
+			array(
+				'a'      => array(
+					'href'   => true,
+					'title'  => true,
+					'target' => true,
+					'rel'    => true,
+				),
+				'span'   => array(
+					'class' => true,
+				),
+				'br'     => array(),
+				'em'     => array(),
+				'strong' => array(),
+			),
+			$description,
+			$field_id
+		);
+
+		return wp_kses( $description, $allowed_html );
 	}
 
 	/**
@@ -364,7 +373,7 @@ abstract class Forminator_Field {
 
 		$attr['value'] = $value;
 
-		if ( ! empty( $description ) || '' !== $description ) {
+		if ( ! empty( $description ) ) {
 			$attr['aria-describedby'] = $attr['id'] . '-description';
 		}
 
@@ -393,7 +402,7 @@ abstract class Forminator_Field {
 			$html .= $wrapper_input[1];
 		}
 
-		if ( ! empty( $description ) || '' !== $description ) {
+		if ( ! empty( $description ) ) {
 			$html .= self::get_description( $description, $get_id );
 		}
 
@@ -426,7 +435,7 @@ abstract class Forminator_Field {
 
 		unset( $attr['content'] );
 
-		if ( ! empty( $description ) || '' !== $description ) {
+		if ( ! empty( $description ) ) {
 			$attr['aria-describedby'] = $attr['id'] . '-description';
 		}
 
@@ -573,7 +582,7 @@ abstract class Forminator_Field {
 
 		$html = '';
 
-		if ( ! empty( $description ) || '' !== $description ) {
+		if ( ! empty( $description ) ) {
 			$attr['aria-describedby'] = $attr['id'] . '-description';
 		}
 
@@ -666,6 +675,7 @@ abstract class Forminator_Field {
 		$html = '';
 		foreach ( $options as $option ) {
 			$selected = '';
+			$disabled = isset( $option['disabled'] ) && $option['disabled'] ? ' disabled' : '';
 
 			if ( isset( $option['value'] ) && is_array( $option['value'] ) ) {
 				$populated_optgroup_options = self::populate_options_for_select( $option['value'], $selected_value );
@@ -676,7 +686,7 @@ abstract class Forminator_Field {
 						|| ! empty( $option['selected'] ) ) {
 					$selected = 'selected="selected"';
 				}
-				$html .= sprintf( '<option value="%s" %s>%s</option>', esc_html( $option['value'] ), $selected, esc_html( $option['label'] ) );
+				$html .= sprintf( '<option value="%s" %s%s>%s</option>', esc_html( $option['value'] ), $selected, $disabled, esc_html( $option['label'] ) );
 			}
 		}
 
@@ -709,7 +719,7 @@ abstract class Forminator_Field {
 		$button_id        = 'forminator-field-' . $field_id . '_button';
 		$mainclass        = 'forminator-file-upload';
 		$class            = 'forminator-input-file';
-		$aria_describedby = esc_attr( $id . '-description' );
+		$aria_describedby = ( ! empty( $description ) ? ' aria-describedby="' . esc_attr( $id . '-description' ) . '"' : '' );
 
 		if ( $required ) {
 			$class .= '-required do-validate';
@@ -723,7 +733,13 @@ abstract class Forminator_Field {
 
 		$upload_data = self::implode_attr( $upload_attr );
 
-		$html .= sprintf( '<div class="%s %s" data-element="%s" aria-describedby="%s">', $mainclass, $style, $field_id, $aria_describedby );
+		$html .= sprintf(
+			'<div class="%s %s" data-element="%s"%s>',
+			$mainclass,
+			$style,
+			$field_id,
+			$aria_describedby
+		);
 
 			$html .= sprintf( '<input type="file" name="%s" id="%s" class="%s" %s>', $name, $id, $class, $upload_data );
 
@@ -1069,6 +1085,9 @@ abstract class Forminator_Field {
 			}
 		} elseif ( stripos( $element_id, 'checkbox-' ) !== false || stripos( $element_id, 'radio-' ) !== false ) {
 			$is_condition_fulfilled = self::is_condition_fulfilled( $field_value, $condition );
+		} elseif ( stripos( $element_id, 'rating-' ) !== false ) {
+			$rating_value           = explode( '/', $field_value )[0] ?? 0;
+			$is_condition_fulfilled = self::is_condition_fulfilled( $rating_value, $condition );
 		} else {
 			$is_condition_fulfilled = self::is_condition_fulfilled( $field_value, $condition, $form_id );
 		}
@@ -1146,6 +1165,8 @@ abstract class Forminator_Field {
 				return $form_field_value < $condition_value;
 			case 'contains':
 				return ( stripos( $form_field_value, $condition_value ) === false ? false : true );
+			case 'does_not_contain':
+				return ! ( stripos( $form_field_value, $condition_value ) !== false );
 			case 'starts':
 				return ( stripos( $form_field_value, $condition_value ) === 0 ? true : false );
 			case 'ends':
@@ -1540,8 +1561,12 @@ abstract class Forminator_Field {
 			$element_autofill_settings = self::get_element_autofill_settings( $element_id, $autofill_settings );
 
 			if ( ! self::element_autofill_is_editable( $element_autofill_settings ) ) {
+				$current_data = $field_data;
 				// refill with autofill provider.
 				$field_data = $this->maybe_replace_to_autofill_value( $field_data, $element_autofill_settings );
+				if ( ! strlen( $field_data ) ) {
+					$field_data = $current_data;
+				}
 			}
 		}
 

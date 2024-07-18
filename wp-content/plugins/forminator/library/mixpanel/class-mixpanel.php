@@ -1,5 +1,4 @@
 <?php
-use Forminator\Mixpanel as FMixPanel;
 /**
  * Mixpanel main class.
  */
@@ -46,20 +45,11 @@ class Forminator_Mixpanel {
 	 * construct
 	 */
 	public function __construct() {
-		if ( null === $this->mixpanel ) {
-			// Create new mixpanel instance.
-			$this->mixpanel = FMixPanel::getInstance(
-				self::TOKEN,
-				array(
-					// Fix class name error due to dynamic class names are not available on prefixed lib.
-					'consumers' => array(
-						'file'   => '\Forminator\ConsumerStrategies_FileConsumer',
-						'curl'   => '\Forminator\ConsumerStrategies_CurlConsumer',
-						'socket' => '\Forminator\ConsumerStrategies_SocketConsumer',
-					),
-					'consumer' => 'socket',
-				)
-			);
+		if ( is_null( $this->mixpanel ) ) {
+			$extra_options  = [
+				'consumer'  => 'socket',
+			];
+			$this->mixpanel = new WPMUDEV_Analytics( 'forminator', 'Forminator', 55, self::TOKEN, $extra_options );
 
 			// Configure mixpanel.
 			$this->mixpanel->identify( $this->identity() );
@@ -150,7 +140,6 @@ class Forminator_Mixpanel {
 			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			'memory_limit'       => ini_get( 'memory_limit' ),
 			'max_execution_time' => ini_get( 'max_execution_time' ),
-			'os_version'         => function_exists( 'php_uname' ) ? php_uname( 's' ) : 'unknown',
 			'competitor_plugin'  => $this->get_competitors()
 		);
 

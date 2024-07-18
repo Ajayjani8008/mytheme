@@ -156,6 +156,7 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 			$data['form_data']['purchase_units'][0]['amount'] = self::prepare_pp_price( $data['form_data']['purchase_units'][0]['amount'] );
 
 			$data = $this->get_temporary_country_code( $data );
+			$data = $this->get_state_code( $data );
 
 			$paypal = new Forminator_PayPal_Express();
 
@@ -240,6 +241,20 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 			}
 		}
 
+		return $data;
+	}
+
+	/**
+	 * Get state code
+	 *
+	 * @param array $data Data for paypal order.
+	 *
+	 * @return array
+	 */
+	private function get_state_code( $data ) {
+		if ( ! empty( $data['form_data']['payer']['address']['admin_area_1'] ) ) {
+			$data['form_data']['payer']['address']['admin_area_1'] = forminator_get_state_code( $data['form_data']['payer']['address']['admin_area_1'] );
+		}
 		return $data;
 	}
 
@@ -804,7 +819,10 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 				return $intent;
 			}
 
-			$result = $intent->confirm();
+			// Don't process confirm if status is requires_capture as it confirmed already.
+			if ( 'requires_capture' !== $intent->status ) {
+				$result = $intent->confirm();
+			}
 		} catch ( Exception $e ) {
 			// Delete entry if paymentIntent confirmation is not successful
 			$entry->delete();
@@ -812,15 +830,18 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 			return new WP_Error( 'forminator_stripe_error', $e->getMessage() );
 		}
 
-		// If we have 3D security on the card return for verification
-		if ( 'requires_action' === $result->status ) {
-			// Delete entry if 3d security is needed, we will store it on next attempt
-			$entry->delete();
+		// Don't process confirm result if status is requires_capture.
+		if ( 'requires_capture' !== $intent->status ) {
+			// If we have 3D security on the card return for verification
+			if ( 'requires_action' === $result->status ) {
+				// Delete entry if 3d security is needed, we will store it on next attempt
+				$entry->delete();
 
-			self::$response_attrs['stripe3d'] = true;
-			self::$response_attrs['secret']   = $result->client_secret;
+				self::$response_attrs['stripe3d'] = true;
+				self::$response_attrs['secret']   = $result->client_secret;
 
-			return new WP_Error( 'forminator_stripe_error', esc_html__( 'This payment require 3D Secure authentication! Please follow the instructions.', 'forminator' ) );
+				return new WP_Error( 'forminator_stripe_error', esc_html__( 'This payment require 3D Secure authentication! Please follow the instructions.', 'forminator' ) );
+			}
 		}
 
 		// Try to capture payment
@@ -833,7 +854,7 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 			return new WP_Error( 'forminator_stripe_error', $e->getMessage() );
 		}
 
-		if ( ! isset( $capture->charges->data[0]->captured ) || true !== $capture->charges->data[0]->captured ) {
+		if ( ! isset( $capture->status ) || 'succeeded' !== $capture->status ) {
 			// Delete entry if capture is not successful.
 			$entry->delete();
 
@@ -1272,14 +1293,19 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 		self::$response_attrs['behav'] = self::get_submission_behaviour( $behavior_options );
 		if ( 'behaviour-redirect' === $behavior_options['submission-behaviour'] && ! empty( $behavior_options['redirect-url'] ) ) {
 			self::$response_attrs['redirect'] = true;
+			$url_encode                       = true;
+			if ( '{' === substr( $behavior_options['redirect-url'], 0, 1 ) && '}' === substr( $behavior_options['redirect-url'], -1 ) ) {
+				$url_encode = false;
+			}
 			// replace form data vars with value.
-			$redirect_url = forminator_replace_form_data( $behavior_options['redirect-url'], $custom_form, $entry, false, true );
+			$redirect_url = forminator_replace_form_data( $behavior_options['redirect-url'], $custom_form, $entry, false, $url_encode );
+			$redirect_url = html_entity_decode( $redirect_url );
 			$tab_value    = isset( $behavior_options['newtab'] ) ? $behavior_options['newtab'] : 'sametab';
 			$newtab       = forminator_replace_form_data( $tab_value, $custom_form, $entry );
 			// replace misc data vars with value.
 			$redirect_url                   = forminator_replace_variables( $redirect_url, self::$module_id );
 			$newtab                         = forminator_replace_variables( $newtab, self::$module_id );
-			self::$response_attrs['url']    = esc_url( $redirect_url );
+			self::$response_attrs['url']    = esc_url_raw( $redirect_url );
 			self::$response_attrs['newtab'] = esc_html( $newtab );
 		}
 
@@ -2212,6 +2238,18 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 	}
 
 	/**
+	 * Handle rating field
+	 *
+	 * @param array $field_settings Field settings.
+	 */
+	private static function handle_rating_field( $field_settings ) {
+		$max_rating                       = Forminator_Field::get_property( 'max_rating', $field_settings, 5 );
+		$field_id                         = Forminator_Field::get_property( 'element_id', $field_settings );
+		$rating_value                     = self::$prepared_data[ $field_id ] ?? 0;
+		self::$prepared_data[ $field_id ] = $rating_value . '/' . $max_rating;
+	}
+
+	/**
 	 * Upload or transfer uploads
 	 * For single and multiple-on-submit uploads,
 	 * we upload directly when form doesnt have any payment fields.
@@ -2372,6 +2410,10 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 							'{}'
 						);
 						break;
+				}
+
+				if ( 'submission_id' === $field['value'] ) {
+					self::$info['field_data_array'][ $key ]['value'] = $entry->entry_id;
 				}
 			}
 		}

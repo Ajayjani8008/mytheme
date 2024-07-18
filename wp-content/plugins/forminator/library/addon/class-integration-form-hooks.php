@@ -45,7 +45,7 @@ abstract class Forminator_Integration_Form_Hooks extends Forminator_Integration_
 		 * @since 1.1
 		 *
 		 * @param int                                          $form_id                current Form ID.
-		 * @param Forminator_Integration_Form_Settings|null $form_settings_instance of Addon Form Settings.
+		 * @param Forminator_Integration_Form_Settings|null $form_settings_instance of Integration Form Settings.
 		 */
 		do_action(
 			'forminator_addon_' . $this->addon->get_slug() . '_on_before_render_form_fields',
@@ -76,7 +76,7 @@ abstract class Forminator_Integration_Form_Hooks extends Forminator_Integration_
 		 * @since 1.1
 		 *
 		 * @param int                                          $form_id                current Form ID.
-		 * @param Forminator_Integration_Form_Settings|null $form_settings_instance of Addon Form Settings.
+		 * @param Forminator_Integration_Form_Settings|null $form_settings_instance of Integration Form Settings.
 		 */
 		do_action(
 			'forminator_addon_' . $this->addon->get_slug() . '_on_after_render_form_fields',
@@ -107,7 +107,7 @@ abstract class Forminator_Integration_Form_Hooks extends Forminator_Integration_
 		 * @since 1.1
 		 *
 		 * @param int                                          $form_id                current Form ID.
-		 * @param Forminator_Integration_Form_Settings|null $form_settings_instance of Addon Form Settings.
+		 * @param Forminator_Integration_Form_Settings|null $form_settings_instance of Integration Form Settings.
 		 */
 		do_action(
 			'forminator_addon_' . $this->addon->get_slug() . '_on_after_render_form',
@@ -143,7 +143,7 @@ abstract class Forminator_Integration_Form_Hooks extends Forminator_Integration_
 		 *
 		 * @param int                                          $form_id                current Form ID.
 		 * @param Forminator_Form_Entry_Model                  $entry_model            Forminator Entry Model.
-		 * @param Forminator_Integration_Form_Settings|null $form_settings_instance of Addon Form Settings.
+		 * @param Forminator_Integration_Form_Settings|null $form_settings_instance of Integration Form Settings.
 		 */
 		do_action(
 			'forminator_addon_' . $addon_slug . '_after_entry_saved',
@@ -177,7 +177,7 @@ abstract class Forminator_Integration_Form_Hooks extends Forminator_Integration_
 		 *
 		 * @param array                                        $export_columns         column to be exported.
 		 * @param int                                          $form_id                current Form ID.
-		 * @param Forminator_Integration_Form_Settings|null $form_settings_instance of Addon Form Settings.
+		 * @param Forminator_Integration_Form_Settings|null $form_settings_instance of Integration Form Settings.
 		 */
 		$error_message = apply_filters(
 			'forminator_addon_' . $addon_slug . '_submit_form_error_message',
@@ -512,8 +512,14 @@ abstract class Forminator_Integration_Form_Hooks extends Forminator_Integration_
 			$meta_value    = self::find_meta_value_from_entry_fields( $element_id, $form_entry_fields );
 			$element_value = Forminator_Form_Entry_Model::meta_value_to_string( 'signature', $meta_value );
 		} elseif ( ! empty( $submitted_data[ $element_id ] ) ) {
-			$field_type    = Forminator_Core::get_field_type( $element_id );
-			$element_value = Forminator_Form_Entry_Model::meta_value_to_string( $field_type, $submitted_data[ $element_id ] );
+			$field_type = Forminator_Core::get_field_type( $element_id );
+			// Replace the `submission_id` with the form entry ID if it exists.
+			if ( 'submission_id' === $submitted_data[ $element_id ] ) {
+				$meta_value    = self::find_meta_value_from_entry_fields( $element_id, $form_entry_fields );
+				$element_value = Forminator_Form_Entry_Model::meta_value_to_string( $field_type, $meta_value );
+			} else {
+				$element_value = Forminator_Form_Entry_Model::meta_value_to_string( $field_type, $submitted_data[ $element_id ] );
+			}
 		}
 
 		return $element_value;

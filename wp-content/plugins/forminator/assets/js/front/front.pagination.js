@@ -392,9 +392,17 @@
 			//get fields on current page
 			page.find("input, select, textarea")
 				.not(":submit, :reset, :image, :disabled")
-				.not(':hidden:not(.forminator-wp-editor-required, .forminator-input-file-required, input[name$="_data"])')
 				.not('[gramm="true"]')
 				.each(function (key, element) {
+					if (
+						$( element ).is(
+							':hidden:not(.forminator-wp-editor-required, .forminator-input-file-required, input[name$="_data"])'
+						) &&
+						! $( element ).closest( '.forminator-pagination' )
+							.length
+					) {
+						return;
+					}
 					valid = validator.element(element);
 
 					if (!valid) {
@@ -535,7 +543,7 @@
 				}
 
 			} else {
-				this.element = this.$el.find('[data-step=' + this.step + ']').data('name');
+				this.element = this.$el.find('.forminator-pagination[data-step=' + this.step + ']').data('name');
 				if ( this.custom_label[this.element] && this.custom_label['pagination-labels'] === 'custom'){
 					this.prev_button_txt = this.custom_label[this.element]['prev-text'] !== '' ? this.custom_label[this.element]['prev-text'] : this.prev_button;
 					this.next_button_txt = this.custom_label[this.element]['next-text'] !== '' ? this.custom_label[this.element]['next-text'] : this.next_button;
@@ -658,10 +666,18 @@
 
 				$element.focus();
 
-				var scrollTop = ($element.offset().top - ($(window).height() - $element.outerHeight(true)) / 2);
+				const minScrollHeight = $( window ).height() / 2;
+				let scrollTop =
+					$element.offset().top -
+					Math.max(
+						minScrollHeight,
+						$( window ).height() - $element.outerHeight( true )
+					) /
+						2;
+
 				if ( this.quiz ) {
 					scrollTop = $element.offset().top;
-					if ( $('#wpadminbar').length ) {
+					if ( $( '#wpadminbar' ).length ) {
 						scrollTop -= 35;
 					}
 				}

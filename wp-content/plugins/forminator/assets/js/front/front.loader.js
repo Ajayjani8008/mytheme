@@ -187,6 +187,10 @@
 			    .replaceWith(html);
 			}
 
+			// Show form only after initialized ForminatorFront to avoid showing hidden fields.
+			let $element = $('#forminator-module-' + id + '[data-forminator-render=' + render_id + ']');
+			$element.hide();
+
 			if (message) {
 				$('#forminator-module-' + id + '[data-forminator-render=' + render_id + '] .forminator-response-message')
 					.replaceWith(message);
@@ -249,6 +253,7 @@
 
 					var script = {};
 					script.src = scripts[script_id].src;
+					script.async = scripts[ script_id ].async ?? true;
                     // Check if a paypal script is already loaded.
                     if ( script.src !== paypal_src ) {
                         scripts_to_load.push(script);
@@ -278,7 +283,7 @@
 
 			script.type   = 'text/javascript';
 			script.src    = script_props.src;
-			script.async  = true;
+			script.async  = script_props.async;
 			script.defer  = true;
 			script.onload = function () {
 				self.script_on_load();

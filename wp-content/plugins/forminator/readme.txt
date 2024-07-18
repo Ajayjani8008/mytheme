@@ -1,13 +1,13 @@
 === Forminator - Contact Form, Payment Form & Custom Form Builder ===
 Plugin Name: Forminator - Contact Form, Payment Form & Custom Form Builder
-Version: 1.30.2
+Version: 1.34.0
 Author: WPMU DEV
 Author URI: https://wpmudev.com/
 Contributors: WPMUDEV
 Tags: forms, contact form, wordpress form plugin, payment form, custom form, form builder, paypal form wordpress, form maker, quiz, quiz builder, order form, stripe payments, paypal payments, stripe form, paypal form
-Requires at least: 5.2
-Tested up to: 6.5
-Stable tag: 1.30.2
+Requires at least: 6.4
+Tested up to: 6.6
+Stable tag: 1.34.0
 Requires PHP: 7.4
 License: GPL v2 - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -20,6 +20,10 @@ Best WordPress form builder plugin. Create contact forms, payment forms & order 
 It’s the magical WordPress form builder for, well, everyone!
 
 Forminator’s drag and drop visual builder makes it easy to setup and add forms to your WordPress website. Collect information, make your content interactive and generate more conversions with Forminator.
+
+Unlock all form fields and premium addons from the start with [Forminator Pro](https://wpmudev.com/project/forminator-pro/?utm_source=wordpress.org&utm_medium=readme&utm_campaign=forminator-readme-above-the-fold&utm_content=forminator_pro).
+
+Level up immediately with exclusive Pro features like Stripe subscription forms, dynamic PDF generation, and easy geolocation & autocomplete. [Learn more about Pro](https://wpmudev.com/project/forminator-pro/?utm_source=wordpress.org&utm_medium=readme&utm_campaign=forminator-readme-above-the-fold&utm_content=forminator_pro).
 
 [youtube https://www.youtube.com/watch?v=q2oBKNWTu5s&feature=youtu.be]
 
@@ -173,10 +177,6 @@ Love Forminator! WPMU DEV has some other awesome free plugins you should checkou
 
 == Frequently Asked Questions ==
 
-= Are there any limitations in the free version of Forminator? =
-
-Currently the free version and the Pro version on [WPMU DEV](https://wpmudev.com/project/forminator-pro/?utm_source=wordpress.org&utm_medium=readme&utm_campaign=forminator-readme&utm_content=wpmu_dev#trial) are exactly the same, aside from our “E-Signature” and “Stripe Subscriptions” features, which are pro only.
-
 = Does Forminator include a Gutenberg block? =
 
 It sure does. Forminator is built to work in both the Gutenberg and ClassicPress editors.
@@ -222,6 +222,87 @@ We take plugin security incredibly seriously; if you have a bug or vulnerability
 9. Allow simple drag and drop multi-file uploads for users.
 
 == Changelog ==
+
+= 1.34.0 ( 2024-07-18 ) =
+
+ - Enhancement: Compatibility with WordPress 6.6
+ - Fix: Rating field Color section inconsistent
+ - Fix: Multi Select field is forced to have a default option
+ - Fix: Lifespan submissions limit ignored for quizzes until the page is refreshed
+ - Fix: PDF attached in Email Notification
+ - Fix: On the third page of pagination, it is not possible to access the previous page of the form list
+ - Fix: Clicking "Submit Deposit" fails when entering a valid zip code
+ - Fix: "Is Not" condition is not working with zero or null value
+ - Fix: Form embedded in Elementor popup showing duplicate buttons
+ - Fix: When submitting the paginated form, fields can be hidden based on the visibility condition
+
+= 1.33.0 ( 2024-07-10 ) =
+
+ - Enhancement: Stripe integration with new RAK Keys
+ - Fix: Border appears around the pagination form when clicking on any unfilled area or rating field
+ - Fix: Prefixes are not allowed in the Pakistani phone field
+ - Fix: Clicking the last dot of the pagination indicator skips required fields
+ - Fix: Custom required alert message does not appear in the Rating field
+ - Fix: Select field displays the first option instead of placeholder text
+ - Fix: When switching from Update Existing Template to New Template, the template name disappears from the selection.
+
+= 1.32.0 ( 2024-07-02 ) =
+
+ - New Feature: Add Preset and Cloud Form Templates
+ - New Feature: Add a Rating field
+ - Enhancement: Ability to choose a worksheet to send data to in a Google Sheet
+ - Enhancement: Add a modern multi-select option to the Select field
+ - Enhancement: Update Phone Number validation library
+ - Enhancement: Compatibility with Custom Field Suite plugin
+ - Fix: Incorrect state in PayPal billing details
+ - Fix: Visibility conditional logic for the submit button based on radio doesn't work on paged forms
+ - Fix: Issues with Group duplication and dragging
+ - Fix: Files stay on the server deleting submission files.
+ - Fix: Default HTML upload field is visible in Post Data featured image along with styled field
+ - Fix: Connected integrations are missing on the Integrations page for quizzes without leads
+ - Fix: Delay when dragging and dropping Forminator fields
+ - Fix: Issue when creating Preset
+ - Fix: Issues with form submission when the Name field is set to Required with prefill enabled.
+ - Fix: Textarea field width is not aligned with the other fields when placed on the 2nd column
+ - Fix: Colon removed from URL when using the Hidden field for redirect
+ - Fix: Submission_id in the Hidden field doesn't work in MailChimp integration
+ - Fix: Forminator doesn't show the menu selected when using Windows High Contrast Mode
+ - Fix: Captcha will not show on preview after the first try on Forms
+ - Fix: JS error when dragging and dropping fields in Forminator
+ - Fix: Issues with translating certain strings
+
+= 1.31.0 ( 2024-06-03 ) =
+
+ - Enhancement: Update Stripe library to the latest version
+ - Enhancement: Add the ability to align ReCaptcha to the right
+ - Enhancement: Prevent disabling calculation option on fields that are used in Calculations field formulas
+ - Fix: Workato Webhook does not connect
+ - Fix: Password is sent as plain text in Login form when using a webhook
+ - Fix: Some fields do not support HTML tags in the description
+ - Fix: Incorrect password on Forminator Login form for a specific password
+ - Fix: Conflicts with the Suremember plugin
+ - Fix: Stripe field is not showing on PopUp plugins
+ - Fix: International phone validation field prevents submission even if the field is optional
+ - Fix: Quiz Final Count message is erased even after saving
+ - Fix: Open the GDPR links in a new browser tab by default
+ - Fix: Form expands when loaded via Ajax while having conditionally visible fields
+ - Fix: Number field is not working for Stripe pre-filled postal code
+ - Fix: Pagination custom button text is not working if you start the form with a Slider field
+ - Fix: Post data field shows only the first Category and first tag in email notification when Multiple option is selected for tags and categories
+ - Fix: Replace statement_descriptor_suffix to fit the Stripe API
+ - Fix: Some Custom CSS classes in the PDF add-on are no longer working
+ - Fix: Slider values are not getting reset when a form is submitted
+ - Fix: Sorting submissions does not apply to exported CSV
+ - Fix: Upload field issue with WebP file type
+ - Fix: HTML Validation for select fields
+ - Fix: Can't assign Name field to username in User Login Form
+ - Fix: Escaping characters in redirect URL breaks form pre-population
+ - Fix: Contact Form 7 image file size limit is not imported
+ - Fix: Scheduled Exports in Submissions do not allow editing of the email on Forms
+ - Fix: Columns break when custom spacing value is set to 0
+ - Fix: Search bar on matching Hubspot fields isn't working
+ - Fix: Incorrect scrolling in paginated forms with long HTML field content on mobile devices
+
 
 = 1.30.2 ( 2024-04-30 ) =
 
@@ -1949,7 +2030,7 @@ WPMU DEV is a premium supplier of quality WordPress plugins, services and suppor
 Don't forget to stay up to date on everything WordPress from the Internet's number one resource:
 [WPMU DEV Blog](https://wpmudev.com/?utm_source=wordpress.org&utm_medium=readme&utm_campaign=forminator-readme&utm_content=wpmu_dev_blog_link)
 
-Hey, one more thing... we hope you [enjoy our free offerings](http://profiles.wordpress.org/WPMUDEV/) as much as we've loved making them for you!
+Hey, one more thing... we hope you [enjoy our free offerings](https://profiles.wordpress.org/wpmudev/#content-plugins) as much as we've loved making them for you!
 
 == Contact and Credits ==
 

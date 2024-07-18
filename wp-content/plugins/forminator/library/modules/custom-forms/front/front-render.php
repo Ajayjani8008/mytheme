@@ -371,13 +371,15 @@ class Forminator_CForm_Front extends Forminator_Render_Form {
 
 			// Check whether provider is reCaptcha or hCaptcha
 			if ( $this->is_recaptcha() ) {
-				$src         = 'https://www.google.com/recaptcha/api.js?hl=' . $language . '&onload=forminator_render_captcha&render=explicit';
-				$script_tag  = 'forminator-google-recaptcha';
-				$script_load = 'grecaptcha';
+				$method_onload = 'forminator_render_captcha';
+				$src           = 'https://www.google.com/recaptcha/api.js?hl=' . $language . '&onload=' . $method_onload . '&render=explicit';
+				$script_tag    = 'forminator-google-recaptcha';
+				$script_load   = 'grecaptcha';
 			} else {
-				$src         = 'https://js.hcaptcha.com/1/api.js?hl=' . $language . '&onload=forminator_render_hcaptcha&render=explicit&recaptchacompat=off';
-				$script_tag  = 'forminator-hcaptcha';
-				$script_load = 'hcaptcha';
+				$method_onload = 'forminator_render_hcaptcha';
+				$src           = 'https://js.hcaptcha.com/1/api.js?hl=' . $language . '&onload=' . $method_onload . '&render=explicit&recaptchacompat=off';
+				$script_tag    = 'forminator-hcaptcha';
+				$script_load   = 'hcaptcha';
 			}
 
 			if ( ! $is_ajax_load ) {
@@ -395,6 +397,13 @@ class Forminator_CForm_Front extends Forminator_Render_Form {
 					'on'   => 'window',
 					'load' => $script_load,
 				);
+				if ( $is_preview ) {
+					$this->script .= '<script type="text/javascript">
+					if ( window["' . $script_load . '"]) {
+							' . $method_onload . '();
+					}
+					</script>';
+				}
 			}
 		}
 
@@ -495,19 +504,22 @@ class Forminator_CForm_Front extends Forminator_Render_Form {
 		if ( $this->has_formatting() ) {
 			$base_url                                      = forminator_plugin_url() . 'assets/js/library/';
 			$this->scripts['forminator-inputmask']         = array(
-				'src'  => add_query_arg( 'ver', FORMINATOR_VERSION, $base_url . 'inputmask.min.js' ),
-				'on'   => 'window',
-				'load' => 'inputmask',
+				'src'   => add_query_arg( 'ver', FORMINATOR_VERSION, $base_url . 'inputmask.min.js' ),
+				'on'    => 'window',
+				'load'  => 'inputmask',
+				'async' => false,
 			);
 			$this->scripts['forminator-jquery-inputmask']  = array(
-				'src'  => add_query_arg( 'ver', FORMINATOR_VERSION, $base_url . 'jquery.inputmask.min.js' ),
-				'on'   => 'window',
-				'load' => 'jquery-inputmask',
+				'src'   => add_query_arg( 'ver', FORMINATOR_VERSION, $base_url . 'jquery.inputmask.min.js' ),
+				'on'    => 'window',
+				'load'  => 'jquery-inputmask',
+				'async' => false,
 			);
 			$this->scripts['forminator-inputmask-binding'] = array(
-				'src'  => add_query_arg( 'ver', FORMINATOR_VERSION, $base_url . 'inputmask.binding.js' ),
-				'on'   => 'window',
-				'load' => 'inputmask-binding',
+				'src'   => add_query_arg( 'ver', FORMINATOR_VERSION, $base_url . 'inputmask.binding.js' ),
+				'on'    => 'window',
+				'load'  => 'inputmask-binding',
+				'async' => false,
 			);
 		}
 
@@ -843,7 +855,8 @@ class Forminator_CForm_Front extends Forminator_Render_Form {
 
 		// We have more than one field in the row, abort.
 		if ( count( $wrapper['fields'] ) > 1 ) {
-			return false;
+			// Checks if all fields are hidden.
+			return ! array_diff( wp_list_pluck( $wrapper['fields'], 'type' ), array( 'hidden' ) );
 		}
 
 		// Check if the field type is hidden.
