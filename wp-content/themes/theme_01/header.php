@@ -6,13 +6,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?php bloginfo('name') ?></title>
-
-    <!-- <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,900|Mirza:400,700&amp;subset=arabic"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Allura" rel="stylesheet"> -->
     <?php wp_head(); ?>
-    <!-- <link rel="stylesheet" href="css/plugin.min.css">
-    <link rel="stylesheet" href="css/style.css"> -->
     <link rel="icon" type="image/png" sizes="32x32" href="<?php echo get_template_directory_uri(); ?>/assets/img/favicon.png">
 </head>
 
