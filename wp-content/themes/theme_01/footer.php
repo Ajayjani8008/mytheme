@@ -1,84 +1,85 @@
 <footer class="footer6 footer--light-gradient">
-        <div class="footer__big">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="widget text_widget">
-                            <img class="footer_logo" src="<?php echo get_template_directory_uri();?>/assets/img/logo.png" alt="logo">
-                            <p>
-                                <a href="tel:+123-4567890" class="tel">+123 4567890</a>
-                                <a href="mailto:support@Prefix.com" class="mail">Support@Prefix.com</a>
-                                <span class="address">Melbourne, Australia, 95 South Park Avenue</span>
-                            </p>
-                        </div>
-                    </div><!-- ends: .col-lg-3 -->
+    <div class="footer__big">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="widget text_widget">
+                        <img class="footer_logo" src="<?php echo get_template_directory_uri(); ?>/assets/img/logo.png" alt="logo">
+                        <p>
+                            <a href="tel:+123-4567890" class="tel">+123 4567890</a>
+                            <a href="mailto:support@Prefix.com" class="mail">Support@Prefix.com</a>
+                            <span class="address">Melbourne, Australia, 95 South Park Avenue</span>
+                        </p>
+                    </div>
+                </div><!-- ends: .col-lg-3 -->
 
-                    <div class="col-lg-3 col-md-6 col-sm-6 d-flex justify-content-lg-center">
-                        <div class="widget widget--links">
-                            <h4 class="widget__title2">Company</h4>
-                            <ul class="links">
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Contacts Us</a></li>
-                                <li><a href="#">Our Team</a></li>
-                            </ul>
-                        </div><!-- ends: .widget -->
-                    </div><!-- ends: .col-lg-3 -->
+                <div class="col-lg-3 col-md-6 col-sm-6 d-flex justify-content-lg-center">
+                    <div class="widget widget--links">
+                        <h4 class="widget__title2">Company</h4>
+                        <ul class="links">
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Contacts Us</a></li>
+                            <li><a href="#">Our Team</a></li>
+                        </ul>
+                    </div><!-- ends: .widget -->
+                </div><!-- ends: .col-lg-3 -->
 
-                    <div class="col-lg-3 col-md-6 col-sm-6 d-flex justify-content-lg-center">
-                        <div class="widget widget--links">
-                            <h4 class="widget__title2">Services</h4>
-                            <ul class="links">
-                                <li><a href="#">Business</a></li>
-                                <li><a href="#">Marketing</a></li>
-                                <li><a href="#">Management</a></li>
-                            </ul>
-                        </div><!-- ends: .widget -->
-                    </div><!-- ends: .col-lg-3 -->
+                <div class="col-lg-3 col-md-6 col-sm-6 d-flex justify-content-lg-center">
+                    <div class="widget widget--links">
+                        <h4 class="widget__title2">Services</h4>
+                        <ul class="links">
+                            <li><a href="#">Business</a></li>
+                            <li><a href="#">Marketing</a></li>
+                            <li><a href="#">Management</a></li>
+                        </ul>
+                    </div><!-- ends: .widget -->
+                </div><!-- ends: .col-lg-3 -->
 
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="widget widget--links">
-                            <h4 class="widget__title2">Useful Links</h4>
-                            <ul class="links">
-                                <li><a href="#">Blog</a></li>
-                                <li><a href="#">FAQ's</a></li>
-                                <li><a href="#">Events</a></li>
-                            </ul>
-                        </div><!-- ends: .widget -->
-                    </div><!-- ends: .col-lg-3 -->
-                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="widget widget--links">
+                        <h4 class="widget__title2">Useful Links</h4>
+                        <ul class="links">
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">FAQ's</a></li>
+                            <li><a href="#">Events</a></li>
+                        </ul>
+                    </div><!-- ends: .widget -->
+                </div><!-- ends: .col-lg-3 -->
             </div>
-        </div><!-- ends: footer__big -->
-        <div class="footer__bottom">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="footer__bottom-content">
-                            <p>&copy; 2020 Prefix. All rights reserved. Created by <a href="#">Prefix</a></p>
-                            <div class="social-basic ">
-                                <ul class="d-flex justify-content-end ">
-                                    <li><a href="#"><span class="fab fa-facebook-f"></span></a></li>
-                                    <li><a href="#"><span class="fab fa-twitter"></span></a></li>
-                                    <li><a href="#"><span class="fab fa-linkedin-in"></span></a></li>
-                                    <li><a href="#"><span class="fab fa-google-plus-g"></span></a></li>
-                                </ul>
-                            </div>
+        </div>
+    </div><!-- ends: footer__big -->
+    <div class="footer__bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer__bottom-content">
+                        <p>&copy; 2020 Prefix. All rights reserved. Created by <a href="#">Prefix</a></p>
+                        <div class="social-basic ">
+                            <ul class="d-flex justify-content-end ">
+                                <li><a href="#"><span class="fab fa-facebook-f"></span></a></li>
+                                <li><a href="#"><span class="fab fa-twitter"></span></a></li>
+                                <li><a href="#"><span class="fab fa-linkedin-in"></span></a></li>
+                                <li><a href="#"><span class="fab fa-google-plus-g"></span></a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-        </div><!-- ends: footer__small -->
-    </footer><!-- ends: footer -->
+        </div>
+    </div><!-- ends: footer__small -->
+</footer><!-- ends: footer -->
 
-    <div class="go_top">
-        <span class="la la-angle-up"></span>
-    </div>
+<div class="go_top">
+    <span class="la la-angle-up"></span>
+</div>
 
-    <!-- <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDduF2tLXicDEPDMAtC6-NLOekX0A5vlnY"></script> -->
-    <!-- inject:js-->
-    <!-- <script src="js/plugins.min.js"></script>
+<!-- <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDduF2tLXicDEPDMAtC6-NLOekX0A5vlnY"></script> -->
+<!-- inject:js-->
+<!-- <script src="js/plugins.min.js"></script>
     <script src="js/script.min.js"></script> -->
-    <!-- endinject-->
-    <?php wp_footer();?>
-</body>
+<!-- endinject-->
  
+<?php wp_footer(); ?>
+</body>
+
 </html>

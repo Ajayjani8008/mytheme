@@ -1,8 +1,5 @@
 <?php
 get_header();
-
-
-
 ?>
 <div id="rev_slider_35_1_wrapper" class="rev_slider_wrapper fullwidthbanner-container" data-alias="slider9" data-source="gallery" style="margin:0px auto;background:transparent;padding:0px;margin-top:0px;margin-bottom:0px;">
     <!-- START REVOLUTION SLIDER 5.4.8.1 fullwidth mode -->
@@ -45,7 +42,7 @@ get_header();
 
                 <!-- LAYER NR. 9 -->
                 <div class="tp-caption   tp-resizeme rs-parallaxlevel-1" id="slide-72-layer-7" data-x="right" data-hoffset="-180" data-y="center" data-voffset="0" data-width="['none','none','none','none']" data-height="['none','none','none','none']" data-visibility="['on','on','on','off']" data-type="image" data-responsive_offset="on" data-frames='[{"delay":4230,"speed":1500,"frame":"0","from":"x:[175%];y:0px;z:0;rX:0;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:1;","mask":"x:[-100%];y:0;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","mask":"x:0;y:0;s:inherit;e:inherit;","ease":"Power3.easeInOut"}]' data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 1;">
-                    <img src="<?php echo get_template_directory_uri() . '/assets/img/slider_1.png;' ?>" alt="" data-ww="700px" data-hh="585px" data-no-retina>
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/slider_1.png" alt="" data-ww="700px" data-hh="585px" data-no-retina>
                 </div>
             </li>
         </ul>
@@ -57,7 +54,289 @@ get_header();
 </div>
 </section><!-- ends: .intro-area -->
 
+<section class="p-top-70 p-bottom-70 border-bottom clients-logo-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="logo-carousel-four owl-carousel">
+                    <div class="carousel-single">
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/cl14.png" alt="">
+                    </div><!-- ends: .carousel-single -->
+                    <div class="carousel-single">
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/cl15.png" alt="">
+                    </div><!-- ends: .carousel-single -->
+                    <div class="carousel-single">
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/cl16.png" alt="">
+                    </div><!-- ends: .carousel-single -->
+                    <div class="carousel-single">
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/cl17.png" alt="">
+                    </div><!-- ends: .carousel-single -->
+                    <div class="carousel-single">
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/cl18.png" alt="">
+                    </div><!-- ends: .carousel-single -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- ends: clients logo area -->
 
 
 
-<?php get_footer() ?>
+
+<section class="features-area border-bottom p-top-105 p-bottom-75">
+    <div class="icon-boxes">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 section-title">
+                    <h3>Helpful Business, The Way It Should Be</h3>
+                    <p>Deserunt dolore voluptatem assumenda quae possimus sunt dignissimos tempora officia. Lorem
+                        ipsum dolor sit amet consectetur adipisicing dolore.</p>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="icon-box icon-box-fourteen text-center">
+                        <span class="bg-secondary icon-rounded"><i class="fas fa-money-bill-alt"></i></span>
+                        <h6 class="color-dark">Principal Investing</h6>
+                        <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi archi. Totam rem
+                            aperiam, eaque ipsa quae abillo.</p>
+                    </div><!-- ends: .icon-box -->
+                </div><!-- ends: .col-lg-3 -->
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="icon-box icon-box-fourteen text-center">
+                        <span class="bg-secondary icon-rounded"><i class="fas fa-chart-bar"></i></span>
+                        <h6 class="color-dark">Project Development</h6>
+                        <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi archi. Totam rem
+                            aperiam, eaque ipsa quae abillo.</p>
+                    </div><!-- ends: .icon-box -->
+                </div><!-- ends: .col-lg-3 -->
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="icon-box icon-box-fourteen text-center">
+                        <span class="bg-secondary icon-rounded"><i class="fas fa-chart-area"></i></span>
+                        <h6 class="color-dark">Financial Advisory</h6>
+                        <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi archi. Totam rem
+                            aperiam, eaque ipsa quae abillo.</p>
+                    </div><!-- ends: .icon-box -->
+                </div><!-- ends: .col-lg-3 -->
+            </div>
+        </div>
+    </div><!-- ends: .icon-boxes -->
+</section><!-- ends: .features-area -->
+
+
+
+
+<section class="content-block content-block--15">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 section-title">
+                <h2>Amazing Business Solution <br> Whatever Your Needs</h2>
+                <p>Deserunt dolore voluptatem assumenda quae possimus sunt dignissimos tempora officia. Lorem ipsum
+                    dolor sit amet consectetur adipisicing dolore.</p>
+            </div><!-- ends: .section-title -->
+            <div class="col-lg-12 m-bottom-20">
+                <div class="row align-items-center">
+                    <div class="col-lg-5 order-lg-0 order-1">
+                        <div class="content-desc">
+                            <h4>Insurance And Finance</h4>
+                            <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veri tatis et quasi archi. Totam
+                                rem aperiam, eaque ipsa quae abillo. Totam rem aperiam, eaque ipsa quae ab illo
+                                inventore veritatis et quasi archi.
+                                <br><br> On the other hand we denounce with righteous indignation and dislike men
+                                who are so beguiled.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 offset-lg-1 order-lg-1 order-0">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/service1.png" alt="" class="img-fluid">
+                    </div>
+                </div>
+            </div><!-- ends: .col-lg-12 -->
+            <div class="col-lg-12 m-bottom-20">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/service2.png" alt="" class="img-fluid">
+                    </div>
+                    <div class="col-lg-5 offset-lg-1">
+                        <div class="content-desc">
+                            <h4>Business And Consulting</h4>
+                            <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veri tatis et quasi archi. Totam
+                                rem aperiam, eaque ipsa quae abillo. Totam rem aperiam, eaque ipsa quae ab illo
+                                inventore veritatis et quasi archi.
+                                <br><br> On the other hand we denounce with righteous indignation and dislike men
+                                who are so beguiled.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- ends: .col-lg-12 -->
+            <div class="col-lg-12">
+                <div class="row align-items-center">
+                    <div class="col-lg-5 order-lg-0 order-1">
+                        <div class="content-desc">
+                            <h4>Strategy Advisory</h4>
+                            <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veri tatis et quasi archi. Totam
+                                rem aperiam, eaque ipsa quae abillo. Totam rem aperiam, eaque ipsa quae ab illo
+                                inventore veritatis et quasi archi.
+                                <br><br> On the other hand we denounce with righteous indignation and dislike men
+                                who are so beguiled.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 offset-lg-1 order-lg-1 order-0 margin-md-60">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/service3.png" alt="" class="img-fluid">
+                    </div>
+                </div>
+            </div><!-- ends: .col-lg-12 -->
+        </div>
+    </div>
+</section><!-- ends: .service-area -->
+
+
+
+
+<div class="cta-wrapper cta--nine bg-primary">
+    <div class="cta--none-contents">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/cta-img.png" alt="">
+                </div>
+                <div class="col-md-6">
+                    <h3>Top 35 Company Start up of the Year <br> <span>Start your projects now.</span></h3>
+                    <a href="#" class="btn btn-secondary">Get in Touch</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- ends: ends: .cta-wrapper -->
+
+
+
+
+<div class="testimonial-carousel-six-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 offset-lg-1">
+                <div class="testimonial-carousel-six owl-carousel">
+                    <div class="carousel-single">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/client6.jpg" alt="" class="rounded-circle">
+                        <h5>Amanda Richards</h5>
+                        <span class="sub-text">Customer Relations</span>
+                        <p>Demons trave runt lectores legere lius quod ii legunt saepius clary tyitas Investig
+                            ationes demon trave rungt. Investig ationes trave lector ompanies that responsibility in
+                            our core business. We work systematically to integrate corporate responsibility in our
+                            core business.</p>
+                    </div><!-- end: .carousel-single -->
+                    <div class="carousel-single">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/client6.jpg" alt="" class="rounded-circle">
+                        <h5>Amanda Richards</h5>
+                        <span class="sub-text">Customer Relations</span>
+                        <p>Demons trave runt lectores legere lius quod ii legunt saepius clary tyitas Investig
+                            ationes demon trave rungt. Investig ationes trave lector ompanies that responsibility in
+                            our core business. We work systematically to integrate corporate responsibility in our
+                            core business.</p>
+                    </div><!-- end: .carousel-single -->
+                    <div class="carousel-single">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/client6.jpg" alt="" class="rounded-circle">
+                        <h5>Amanda Richards</h5>
+                        <span class="sub-text">Customer Relations</span>
+                        <p>Demons trave runt lectores legere lius quod ii legunt saepius clary tyitas Investig
+                            ationes demon trave rungt. Investig ationes trave lector ompanies that responsibility in
+                            our core business. We work systematically to integrate corporate responsibility in our
+                            core business.</p>
+                    </div><!-- end: .carousel-single -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<section class="news-area p-top-100 p-bottom-60">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 section-title">
+                <h2>Check Our Latest News</h2>
+                <p>Deserunt dolore voluptatem assumenda quae possimus sunt dignissimos tempora officia. Lorem ipsum
+                    dolor sit amet consectetur adipisicing dolore.</p>
+            </div>
+            <div class="post--card-four col-lg-12">
+                <div class="row">
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="card post--card post--card4">
+                            <figure>
+                                <img src="<?php echo get_template_directory_uri() ?>/assets/img/blog-1.jpg" alt="">
+                            </figure>
+                            <div class="card-body">
+                                <h6><a href="#">How to Run a Successful Business Meeting</a></h6>
+                                <p>Investig ationes demons trave runt lec tores legere liusry quod ii legunt saepius
+                                    claritas Investig ationes.</p>
+                                <ul class="post-meta d-flex m-top-20">
+                                    <li>Aug 12, 2019</li>
+                                    <li>in <a href="#">Industry</a></li>
+                                </ul>
+                            </div>
+                        </div><!-- End: .card -->
+                    </div><!-- ends: .col-lg-4 -->
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="card post--card post--card4">
+                            <figure>
+                                <img src="<?php echo get_template_directory_uri() ?>/assets/img/blog-2.jpg" alt="">
+                            </figure>
+                            <div class="card-body">
+                                <h6><a href="#">Gold Prices Soar, but Many People don’t Believe it</a></h6>
+                                <p>Investig ationes demons trave runt lec tores legere liusry quod ii legunt saepius
+                                    claritas Investig ationes.</p>
+                                <ul class="post-meta d-flex m-top-20">
+                                    <li>Aug 12, 2019</li>
+                                    <li>in <a href="#">Industry</a></li>
+                                </ul>
+                            </div>
+                        </div><!-- End: .card -->
+                    </div><!-- ends: .col-lg-4 -->
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="card post--card post--card4">
+                            <figure>
+                                <img src="<?php echo get_template_directory_uri() ?>/assets/img/blog-3.jpg" alt="">
+                            </figure>
+                            <div class="card-body">
+                                <h6><a href="#">Global Automative Market Grows to $600 Billion</a></h6>
+                                <p>Investig ationes demons trave runt lec tores legere liusry quod ii legunt saepius
+                                    claritas Investig ationes.</p>
+                                <ul class="post-meta d-flex m-top-20">
+                                    <li>Aug 12, 2019</li>
+                                    <li>in <a href="#">Industry</a></li>
+                                </ul>
+                            </div>
+                        </div><!-- End: .card -->
+
+                    </div><!-- ends: .col-lg-4 -->
+                </div><!-- ends: .row -->
+            </div><!-- ends: .post--card1 -->
+        </div>
+    </div>
+</section><!-- ends: .news-area -->
+
+
+
+
+<section class="subscribe-seven">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="subscribe-contents text-center">
+                    <h2>Get Started Instantly! <br> <span>Request a Call Back Now</span></h2>
+                    <form action="#" class="subscribe-form-two p-left-50 p-right-50">
+                        <div>
+                            <input type="text" class="form-control" placeholder="Enter your email address" aria-label="Username">
+                            <button class="btn btn-primary">Request Now</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- ends: .subscribe-seven -->
+
+<?php get_footer(); ?>
