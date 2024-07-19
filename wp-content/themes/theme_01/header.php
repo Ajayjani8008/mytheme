@@ -13,7 +13,7 @@
     <?php wp_head();?>
     <!-- <link rel="stylesheet" href="css/plugin.min.css">
     <link rel="stylesheet" href="css/style.css"> -->
-    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo get_template_directory_uri()."assets/"?>img/favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo get_template_directory_uri();?>/assets/img/favicon.png">
 </head>
 
 <body>
@@ -38,7 +38,7 @@
                                     <div class="m-right-15">
                                         <ul class="navbar-nav ">
                                             <li class="nav-item active">
-                                                <a class="nav-link" href="index.html">Home
+                                                <a class="nav-link" href="index.php">Home
                                                     <span class="sr-only">(current)</span>
                                                 </a>
                                             </li>
@@ -46,10 +46,10 @@
                                                 <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true"
                                                     aria-expanded="false">Service</a>
                                                 <div class="dropdown-menu">
-                                                    <a href="services-two.html" class="dropdown-item">Service Two</a>
-                                                    <a href="project-grid-3-column.html" class="dropdown-item">Project
+                                                    <a href="services-two.php" class="dropdown-item">Service Two</a>
+                                                    <a href="project-grid-3-column.php" class="dropdown-item">Project
                                                         Grid 3 Column</a>
-                                                    <a href="project-single1.html" class="dropdown-item">project
+                                                    <a href="project-single1.php" class="dropdown-item">project
                                                         single1</a>
                                                 </div>
                                             </li>
@@ -57,29 +57,29 @@
                                                 <a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true"
                                                     aria-expanded="false">Pages</a>
                                                 <div class="dropdown-menu">
-                                                    <a href="team-grid.html" class="dropdown-item">Team Grid</a>
-                                                    <a href="team-single.html" class="dropdown-item">Team Single</a>
-                                                    <a href="event-grid.html" class="dropdown-item">Event Grid</a>
-                                                    <a href="event-details.html" class="dropdown-item">Event Details</a>
-                                                    <a href="404.html" class="dropdown-item">404</a>
-                                                    <a href="faqs.html" class="dropdown-item">Faqs</a>
+                                                    <a href="team-grid.php" class="dropdown-item">Team Grid</a>
+                                                    <a href="team-single.php" class="dropdown-item">Team Single</a>
+                                                    <a href="event-grid.php" class="dropdown-item">Event Grid</a>
+                                                    <a href="event-details.php" class="dropdown-item">Event Details</a>
+                                                    <a href="404.php" class="dropdown-item">404</a>
+                                                    <a href="faqs.php" class="dropdown-item">Faqs</a>
                                                 </div>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="about-one.html">About</a>
+                                                <a class="nav-link" href="about-one.php">About</a>
                                             </li>
                                             <li class="nav-item dropdown">
                                                 <a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true"
                                                     aria-expanded="false">Blog</a>
                                                 <div class="dropdown-menu">
-                                                    <a href="blog-masonry1.html" class="dropdown-item">Blog Masonry
+                                                    <a href="blog-masonry1.php" class="dropdown-item">Blog Masonry
                                                         One</a>
-                                                    <a href="blog-details-slider.html" class="dropdown-item">Blog
+                                                    <a href="blog-details-slider.php" class="dropdown-item">Blog
                                                         Details Slider</a>
                                                 </div>
                                             </li>
                                             <li class="nav-item ">
-                                                <a class="nav-link" href="contact-1.html">Contact</a>
+                                                <a class="nav-link" href="contact-1.php">Contact</a>
                                             </li>
 
                                         </ul>
