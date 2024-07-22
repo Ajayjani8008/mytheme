@@ -280,14 +280,14 @@ get_header();
                             <div class="col-lg-4 col-sm-6">
                                 <div class="card post--card post--card4">
                                     <figure>
-                                        <img src="<?php echo esc_url($news_data['news_image']); ?>" alt="">
+                                        <img src="<?php echo ($news_data['news_image']); ?>" alt="">
                                     </figure>
                                     <div class="card-body">
-                                        <h6><a href="#"><?php echo esc_html($news_data['heading']); ?></a></h6>
+                                        <h6><a href="<?php the_permalink(); ?>"><?php echo esc_html($news_data['heading']); ?></a></h6>
                                         <p><?php echo esc_html($news_data['description']); ?></p>
                                         <ul class="post-meta d-flex m-top-20">
-                                            <li><?php echo esc_html($news_data['publish_date']); ?></li>
-                                            <li>in <a href="#">Industry</a></li>
+                                            <li><?php echo date('F j, Y', strtotime($news_data['publish_date'])); ?></li>
+                                            <li>in <a href="<?php echo get_permalink();?>">Industry</a></li>
                                         </ul>
                                     </div>
                                 </div><!-- End: .card -->
@@ -302,8 +302,9 @@ get_header();
                 </div>
             </div>
         </div>
-    </div>
+    </div>  
 </section>
+
 
 
 

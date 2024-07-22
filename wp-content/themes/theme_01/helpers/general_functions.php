@@ -1,16 +1,20 @@
 <?php
-function set_news_post_date($post_id)
-{
-    //check if this is  post to apply  the logic to 
-
+function set_news_post_date($post_id) {
+    // Check if this is a post of type 'news'
     if ('news' !== get_post_type($post_id)) {
         return;
     }
-    //check if dat field is empty
-    $date = get_field('publish_date', $post_id);
-    if (empty($date)) {
-        //set data to current date
-        update_field('publish_date', current_time('Ymd'), $post_id);
+
+    // Get the 'news' field group
+    $news_group = get_field('news', $post_id);
+
+    // Check if the 'publish_date' subfield is empty
+    if (empty($news_group['publish_date'])) {
+        // Set the 'publish_date' subfield to the current date
+        $news_group['publish_date'] = date('Ymd'); // ACF expects the date in 'Ymd' format
+
+        // Update the field
+        update_field('news', $news_group, $post_id);
     }
 }
 
