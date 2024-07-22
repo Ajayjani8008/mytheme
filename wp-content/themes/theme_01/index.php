@@ -254,69 +254,56 @@ get_header();
 
 
 <section class="news-area p-top-100 p-bottom-60">
+    <?php
+    $news_section = get_field('news_section', 'option');
+    ?>
     <div class="container">
         <div class="row">
             <div class="col-lg-8 offset-lg-2 section-title">
-                <h2>Check Our Latest News</h2>
-                <p>Deserunt dolore voluptatem assumenda quae possimus sunt dignissimos tempora officia. Lorem ipsum
-                    dolor sit amet consectetur adipisicing dolore.</p>
+                <h2><?php echo esc_html($news_section['title']); ?></h2>
+                <p><?php echo esc_html($news_section['description']); ?></p>
             </div>
             <div class="post--card-four col-lg-12">
                 <div class="row">
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="card post--card post--card4">
-                            <figure>
-                                <img src="<?php echo get_template_directory_uri() ?>/assets/img/blog-1.jpg" alt="">
-                            </figure>
-                            <div class="card-body">
-                                <h6><a href="#">How to Run a Successful Business Meeting</a></h6>
-                                <p>Investig ationes demons trave runt lec tores legere liusry quod ii legunt saepius
-                                    claritas Investig ationes.</p>
-                                <ul class="post-meta d-flex m-top-20">
-                                    <li>Aug 12, 2019</li>
-                                    <li>in <a href="#">Industry</a></li>
-                                </ul>
-                            </div>
-                        </div><!-- End: .card -->
-                    </div><!-- ends: .col-lg-4 -->
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="card post--card post--card4">
-                            <figure>
-                                <img src="<?php echo get_template_directory_uri() ?>/assets/img/blog-2.jpg" alt="">
-                            </figure>
-                            <div class="card-body">
-                                <h6><a href="#">Gold Prices Soar, but Many People don’t Believe it</a></h6>
-                                <p>Investig ationes demons trave runt lec tores legere liusry quod ii legunt saepius
-                                    claritas Investig ationes.</p>
-                                <ul class="post-meta d-flex m-top-20">
-                                    <li>Aug 12, 2019</li>
-                                    <li>in <a href="#">Industry</a></li>
-                                </ul>
-                            </div>
-                        </div><!-- End: .card -->
-                    </div><!-- ends: .col-lg-4 -->
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="card post--card post--card4">
-                            <figure>
-                                <img src="<?php echo get_template_directory_uri() ?>/assets/img/blog-3.jpg" alt="">
-                            </figure>
-                            <div class="card-body">
-                                <h6><a href="#">Global Automative Market Grows to $600 Billion</a></h6>
-                                <p>Investig ationes demons trave runt lec tores legere liusry quod ii legunt saepius
-                                    claritas Investig ationes.</p>
-                                <ul class="post-meta d-flex m-top-20">
-                                    <li>Aug 12, 2019</li>
-                                    <li>in <a href="#">Industry</a></li>
-                                </ul>
-                            </div>
-                        </div><!-- End: .card -->
+                    <?php
+                    $news_args = array(
+                        'post_type' => 'news',
+                        'posts_per_page' => -1,
+                        'order' => 'ASC',
+                    );
+                    $news_posts = new WP_Query($news_args);
 
-                    </div><!-- ends: .col-lg-4 -->
-                </div><!-- ends: .row -->
-            </div><!-- ends: .post--card1 -->
+                    if ($news_posts->have_posts()) :
+                        while ($news_posts->have_posts()) : $news_posts->the_post();
+                            $news_data = get_field('news');
+                    ?>
+                            <div class="col-lg-4 col-sm-6">
+                                <div class="card post--card post--card4">
+                                    <figure>
+                                        <img src="<?php echo esc_url($news_data['news_image']); ?>" alt="">
+                                    </figure>
+                                    <div class="card-body">
+                                        <h6><a href="#"><?php echo esc_html($news_data['heading']); ?></a></h6>
+                                        <p><?php echo esc_html($news_data['description']); ?></p>
+                                        <ul class="post-meta d-flex m-top-20">
+                                            <li><?php echo esc_html($news_data['publish_date']); ?></li>
+                                            <li>in <a href="#">Industry</a></li>
+                                        </ul>
+                                    </div>
+                                </div><!-- End: .card -->
+                            </div><!-- ends: .col-lg-4 -->
+                    <?php
+                        endwhile;
+                        wp_reset_postdata();
+                    else :
+                        echo '<p>No news found.</p>';
+                    endif;
+                    ?>
+                </div>
+            </div>
         </div>
     </div>
-</section><!-- ends: .news-area -->
+</section>
 
 
 

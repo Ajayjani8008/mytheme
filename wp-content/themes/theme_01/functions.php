@@ -98,6 +98,10 @@ function enqueue_ajax_comments_script()
 add_action('wp_enqueue_scripts', 'enqueue_ajax_comments_script');
 
 
+if (function_exists('acf_add_options_page')) {
+    acf_add_options_page();
+}
+
 
 function prefix_theme_enqueue_extra_fonts()
 {
@@ -143,3 +147,6 @@ function prefix_theme_enqueue_extra_fonts()
     wp_enqueue_style('prefix-theme-font66', get_template_directory_uri() . '/fonts/Linearicons-Freed41d.eot', array(), '1.0');
 }
 add_action('wp_enqueue_scripts', 'prefix_theme_enqueue_extra_fonts');
+
+require_once get_template_directory().'/helpers/function_post_type.php';
+require_once get_template_directory().'/helpers/general_functions.php';
