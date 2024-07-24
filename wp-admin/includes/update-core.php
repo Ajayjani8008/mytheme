@@ -765,6 +765,11 @@ $_old_files = array(
 	'wp-admin/images/about-header-freedoms.svg',
 	'wp-admin/images/about-header-contribute.svg',
 	'wp-admin/images/about-header-background.svg',
+	// 6.6
+	'wp-includes/blocks/block/editor.css',
+	'wp-includes/blocks/block/editor.min.css',
+	'wp-includes/blocks/block/editor-rtl.css',
+	'wp-includes/blocks/block/editor-rtl.min.css',
 );
 
 /**
@@ -1763,3 +1768,4 @@ function _upgrade_core_deactivate_incompatible_plugins() {
 		deactivate_plugins( array( 'gutenberg/gutenberg.php' ), true );
 	}
 }
+C:\xampp\htdocs\mytheme\wp-includes\js\tinymce\skins\lightgray\img\loader.gif

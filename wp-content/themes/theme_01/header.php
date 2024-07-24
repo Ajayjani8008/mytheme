@@ -5,9 +5,12 @@
     <meta charset="<?php bloginfo('chatset') ?>">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><?php bloginfo('name') ?></title>
+    <title><?php bloginfo('name'); ?></title>
     <?php wp_head(); ?>
-    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo get_template_directory_uri(); ?>/assets/img/favicon.png">
+    <!-- <link rel="icon" type="image/x-icon" href="<?php // echo get_template_directory_uri(); 
+                                                    ?>/assets/img/favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?php // echo get_template_directory_uri(); 
+                                                            ?>/assets/img/favicon.png"> -->
 </head>
 
 <body <?php body_class(); ?>>
@@ -22,7 +25,37 @@
                     <div class="menu_area menu8">
                         <div class="container">
                             <nav class="navbar navbar-expand-lg navbar-light px-0 ">
-                                <a class="navbar-brand order-sm-1 order-1" href="#"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/logo.png" alt="" /></a>
+                                <a class="navbar-brand order-sm-1 order-1" href="<?php echo esc_url(home_url('/')); ?>">
+                                    <?php
+                                    //if (function_exists('the_custom_logo') && has_custom_logo()) {
+                                    //     the_custom_logo();
+                                    // } else {
+                                    ?>
+                                    <!-- <img src="<?php  //echo esc_url(get_template_directory_uri()); 
+                                                    ?>/assets/img/logo.png" alt="<?php //bloginfo('name'); 
+                                                                                    ?>" /> -->
+                                    <?php
+                                    // }
+                                    ?>
+
+                                    <!-- In  other   method we also do this -->
+
+                                    <?php
+                                    $header_logo = get_theme_mod('header_logo');
+
+
+                                    if ($header_logo) : ?>
+                                        <!-- Display the logos if they exist -->
+                                        <?php if ($header_logo) : ?>
+                                            <img src="<?php echo esc_url($header_logo); ?>" alt="<?php bloginfo('name'); ?>" class="header-logo" />
+                                        <?php endif; ?>
+                                    <?php else : ?>
+                                        <!-- Fallback to the default logo if no custom logo is set -->
+                                        <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/logo.png" alt="<?php bloginfo('name'); ?>" />
+                                    <?php endif; ?>
+
+
+                                </a>
                                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent22" aria-controls="navbarSupportedContent22" aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="la la-bars"></span>
                                 </button>
@@ -80,7 +113,7 @@
                                                 }
                                                 return $submenu_items;
                                             }
-                                   
+
                                             ?>
                                         </ul>
                                     </div>
@@ -91,20 +124,40 @@
                                         <span class="la la-search search_trigger"></span>
 
                                         <div class="search_area">
-                                            <form action="https://demo.Prefix.com/">
+                                            <form id="searchForm" action="<?php echo esc_url(home_url('/')); ?>" method="get">
                                                 <div class="input-group input-group-light">
                                                     <span class="icon-left" id="basic-addon78">
                                                         <i class="la la-search"></i>
                                                     </span>
-                                                    <input type="text" class="form-control search_field" placeholder="Type words and hit enter...">
+                                                    <input type="text" name="s" class="form-control search_field" placeholder="Type words and hit enter...">
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
+
                             </nav>
                         </div>
                     </div>
                     <!-- end menu area -->
 
                 </section><!-- end: .header -->
+                <!-- <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const searchTrigger = document.querySelector('.search_trigger');
+                        const searchArea = document.querySelector('.search_area');
+                        const searchForm = document.getElementById('searchForm');
+
+                        searchTrigger.addEventListener('click', function() {
+                            searchArea.classList.toggle('active');
+                        });
+
+                        searchForm.addEventListener('submit', function(e) {
+                            e.preventDefault();
+                            const query = searchForm.querySelector('.search_field').value;
+                            if (query) {
+                                window.location.href = searchForm.action + '?s=' + encodeURIComponent(query);
+                            }
+                        });
+                    });
+                </script> -->

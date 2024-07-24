@@ -85,6 +85,11 @@ function enqueue_google_fonts() {
 add_action( 'wp_enqueue_scripts', 'enqueue_google_fonts' );
 
 
+// Enqueue Custom Fonts
+function enqueue_custom_fonts() {
+    wp_enqueue_style('custom-fonts', get_template_directory_uri() . '/assets/css/custom-fonts.css', array(), '1.0');
+}
+add_action('wp_enqueue_scripts', 'enqueue_custom_fonts');
 
 // Enqueue JavaScript file for AJAX functionality
 function enqueue_ajax_comments_script()
@@ -101,52 +106,51 @@ add_action('wp_enqueue_scripts', 'enqueue_ajax_comments_script');
 if (function_exists('acf_add_options_page')) {
     acf_add_options_page();
 }
+// function prefix_theme_enqueue_extra_fonts()
+// {
+//     // Enqueue custom fonts from the 'font' folder
 
+//     wp_enqueue_style('prefix-theme-font1', get_template_directory_uri() . '/fonts/revicons/revicons90c6.eot', array(), '1.0');
+//     wp_enqueue_style('prefix-theme-font2', get_template_directory_uri() . '/fonts/revicons/revicons90c6.svg', array(), '1.0');
+//     wp_enqueue_style('prefix-theme-font3', get_template_directory_uri() . '/fonts/revicons/revicons90c6.ttf', array(), '1.0');
+//     wp_enqueue_style('prefix-theme-font4', get_template_directory_uri() . '/fonts/revicons/revicons90c6.woff', array(), '1.0');
 
-function prefix_theme_enqueue_extra_fonts()
-{
-    // Enqueue custom fonts from the 'font' folder
+//     wp_enqueue_style('prefix-theme-font11', get_template_directory_uri() . '/fonts/fa-brands-400.eot', array(), '1.0');
+//     wp_enqueue_style('prefix-theme-font21', get_template_directory_uri() . '/fonts/fa-brands-400.svg', array(), '1.0');
+//     wp_enqueue_style('prefix-theme-font31', get_template_directory_uri() . '/fonts/fa-brands-400.woff', array(), '1.0');
+//     wp_enqueue_style('prefix-theme-font41', get_template_directory_uri() . '/fonts/fa-brands-400d41d.eot', array(), '1.0');
 
-    wp_enqueue_style('prefix-theme-font1', get_template_directory_uri() . '/fonts/revicons/revicons90c6.eot', array(), '1.0');
-    wp_enqueue_style('prefix-theme-font2', get_template_directory_uri() . '/fonts/revicons/revicons90c6.svg', array(), '1.0');
-    wp_enqueue_style('prefix-theme-font3', get_template_directory_uri() . '/fonts/revicons/revicons90c6.ttf', array(), '1.0');
-    wp_enqueue_style('prefix-theme-font4', get_template_directory_uri() . '/fonts/revicons/revicons90c6.woff', array(), '1.0');
-
-    wp_enqueue_style('prefix-theme-font11', get_template_directory_uri() . '/fonts/fa-brands-400.eot', array(), '1.0');
-    wp_enqueue_style('prefix-theme-font21', get_template_directory_uri() . '/fonts/fa-brands-400.svg', array(), '1.0');
-    wp_enqueue_style('prefix-theme-font31', get_template_directory_uri() . '/fonts/fa-brands-400.woff', array(), '1.0');
-    wp_enqueue_style('prefix-theme-font41', get_template_directory_uri() . '/fonts/fa-brands-400d41d.eot', array(), '1.0');
-
-    wp_enqueue_style('prefix-theme-font12', get_template_directory_uri() . '/fonts/fa-regular-400.eot', array(), '1.0');
-    wp_enqueue_style('prefix-theme-font22', get_template_directory_uri() . '/fonts/fa-regular-400.svg', array(), '1.0');
-    wp_enqueue_style('prefix-theme-font32', get_template_directory_uri() . '/fonts/fa-regular-400.woff', array(), '1.0');
-    wp_enqueue_style('prefix-theme-font42', get_template_directory_uri() . '/fonts/fa-regular-400d41d.eot', array(), '1.0');
+//     wp_enqueue_style('prefix-theme-font12', get_template_directory_uri() . '/fonts/fa-regular-400.eot', array(), '1.0');
+//     wp_enqueue_style('prefix-theme-font22', get_template_directory_uri() . '/fonts/fa-regular-400.svg', array(), '1.0');
+//     wp_enqueue_style('prefix-theme-font32', get_template_directory_uri() . '/fonts/fa-regular-400.woff', array(), '1.0');
+//     wp_enqueue_style('prefix-theme-font42', get_template_directory_uri() . '/fonts/fa-regular-400d41d.eot', array(), '1.0');
     
-    wp_enqueue_style('prefix-theme-font13', get_template_directory_uri() . '/fonts/fa-solid-900.eot', array(), '1.0');
-    wp_enqueue_style('prefix-theme-font23', get_template_directory_uri() . '/fonts/fa-solid-900.svg', array(), '1.0');
-    wp_enqueue_style('prefix-theme-font33', get_template_directory_uri() . '/fonts/fa-solid-900.woff', array(), '1.0');
-    wp_enqueue_style('prefix-theme-font43', get_template_directory_uri() . '/fonts/fa-solid-900d41d.eot', array(), '1.0');
+//     wp_enqueue_style('prefix-theme-font13', get_template_directory_uri() . '/fonts/fa-solid-900.eot', array(), '1.0');
+//     wp_enqueue_style('prefix-theme-font23', get_template_directory_uri() . '/fonts/fa-solid-900.svg', array(), '1.0');
+//     wp_enqueue_style('prefix-theme-font33', get_template_directory_uri() . '/fonts/fa-solid-900.woff', array(), '1.0');
+//     wp_enqueue_style('prefix-theme-font43', get_template_directory_uri() . '/fonts/fa-solid-900d41d.eot', array(), '1.0');
 
-    wp_enqueue_style('prefix-theme-font14', get_template_directory_uri() . '/fonts/fontelloc5e6.eot', array(), '1.0');
-    wp_enqueue_style('prefix-theme-font24', get_template_directory_uri() . '/fonts/fontelloc5e6.svg', array(), '1.0');
-    wp_enqueue_style('prefix-theme-font34', get_template_directory_uri() . '/fonts/fontelloc5e6.ttf', array(), '1.0');
-    wp_enqueue_style('prefix-theme-font44', get_template_directory_uri() . '/fonts/fontelloc5e6.woff', array(), '1.0');
-    wp_enqueue_style('prefix-theme-font54', get_template_directory_uri() . '/fonts/fontelloc5e6.woff2', array(), '1.0');
+//     wp_enqueue_style('prefix-theme-font14', get_template_directory_uri() . '/fonts/fontelloc5e6.eot', array(), '1.0');
+//     wp_enqueue_style('prefix-theme-font24', get_template_directory_uri() . '/fonts/fontelloc5e6.svg', array(), '1.0');
+//     wp_enqueue_style('prefix-theme-font34', get_template_directory_uri() . '/fonts/fontelloc5e6.ttf', array(), '1.0');
+//     wp_enqueue_style('prefix-theme-font44', get_template_directory_uri() . '/fonts/fontelloc5e6.woff', array(), '1.0');
+//     wp_enqueue_style('prefix-theme-font54', get_template_directory_uri() . '/fonts/fontelloc5e6.woff2', array(), '1.0');
 
-    wp_enqueue_style('prefix-theme-font15', get_template_directory_uri() . '/fonts/line-awesomeeb4f.eot', array(), '1.0');
-    wp_enqueue_style('prefix-theme-font25', get_template_directory_uri() . '/fonts/line-awesomeeb4f.svg', array(), '1.0');
-    wp_enqueue_style('prefix-theme-font35', get_template_directory_uri() . '/fonts/line-awesomeeb4f.ttf', array(), '1.0');
-    wp_enqueue_style('prefix-theme-font45', get_template_directory_uri() . '/fonts/line-awesomeeb4f.woff', array(), '1.0');
-    wp_enqueue_style('prefix-theme-font55', get_template_directory_uri() . '/fonts/line-awesomeeb4f.woff2', array(), '1.0');
+//     wp_enqueue_style('prefix-theme-font15', get_template_directory_uri() . '/fonts/line-awesomeeb4f.eot', array(), '1.0');
+//     wp_enqueue_style('prefix-theme-font25', get_template_directory_uri() . '/fonts/line-awesomeeb4f.svg', array(), '1.0');
+//     wp_enqueue_style('prefix-theme-font35', get_template_directory_uri() . '/fonts/line-awesomeeb4f.ttf', array(), '1.0');
+//     wp_enqueue_style('prefix-theme-font45', get_template_directory_uri() . '/fonts/line-awesomeeb4f.woff', array(), '1.0');
+//     wp_enqueue_style('prefix-theme-font55', get_template_directory_uri() . '/fonts/line-awesomeeb4f.woff2', array(), '1.0');
 
-    wp_enqueue_style('prefix-theme-font16', get_template_directory_uri() . '/fonts/Linearicons-Free54e9.eot', array(), '1.0');
-    wp_enqueue_style('prefix-theme-font26', get_template_directory_uri() . '/fonts/Linearicons-Free54e9.svg', array(), '1.0');
-    wp_enqueue_style('prefix-theme-font36', get_template_directory_uri() . '/fonts/Linearicons-Free54e9.ttf', array(), '1.0');
-    wp_enqueue_style('prefix-theme-font46', get_template_directory_uri() . '/fonts/Linearicons-Free54e9.woff', array(), '1.0');
-    wp_enqueue_style('prefix-theme-font56', get_template_directory_uri() . '/fonts/Linearicons-Free54e9.woff2', array(), '1.0');
-    wp_enqueue_style('prefix-theme-font66', get_template_directory_uri() . '/fonts/Linearicons-Freed41d.eot', array(), '1.0');
-}
-add_action('wp_enqueue_scripts', 'prefix_theme_enqueue_extra_fonts');
+//     wp_enqueue_style('prefix-theme-font16', get_template_directory_uri() . '/fonts/Linearicons-Free54e9.eot', array(), '1.0');
+//     wp_enqueue_style('prefix-theme-font26', get_template_directory_uri() . '/fonts/Linearicons-Free54e9.svg', array(), '1.0');
+//     wp_enqueue_style('prefix-theme-font36', get_template_directory_uri() . '/fonts/Linearicons-Free54e9.ttf', array(), '1.0');
+//     wp_enqueue_style('prefix-theme-font46', get_template_directory_uri() . '/fonts/Linearicons-Free54e9.woff', array(), '1.0');
+//     wp_enqueue_style('prefix-theme-font56', get_template_directory_uri() . '/fonts/Linearicons-Free54e9.woff2', array(), '1.0');
+//     wp_enqueue_style('prefix-theme-font66', get_template_directory_uri() . '/fonts/Linearicons-Freed41d.eot', array(), '1.0');
+// }
+// add_action('wp_enqueue_scripts', 'prefix_theme_enqueue_extra_fonts');
 
 require_once get_template_directory().'/helpers/function_post_type.php';
 require_once get_template_directory().'/helpers/general_functions.php';
+require_once get_template_directory().'/helpers/customizer_functions.php';
