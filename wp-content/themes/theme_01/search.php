@@ -16,9 +16,9 @@
                     the_post();
                     ?>
                     <div class="search-result-item">
-                        <h2 class="search-result-title">
+                        <h4 class="search-result-title">
                             <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                        </h2>
+                        </h4>
                         <div class="search-result-excerpt">
                             <?php the_excerpt(); ?>
                         </div>
@@ -39,7 +39,7 @@
             else :
                 ?>
                 <header class="page-header">
-                    <h1 class="page-title"><?php esc_html_e( 'Nothing Found', 'monsoon-theme' ); ?></h1>
+                    <h2 class="page-title"><?php esc_html_e( 'Nothing Found', 'monsoon-theme' ); ?></h2>
                 </header><!-- .page-header -->
 
                 <div class="no-results">

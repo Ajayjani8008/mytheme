@@ -119,6 +119,10 @@
                                     </div>
                                 </div>
 
+
+                                <!-- Search Form  -->
+                                <!-- This form access the search.php  automatically-->
+
                                 <div class="nav_right_content m-left-30 d-flex align-items-center order-2 order-sm-2">
                                     <div class="nav_right_module search_module">
                                         <span class="la la-search search_trigger"></span>
@@ -135,6 +139,13 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <!--                                 
+                                <form id="searchForm1" class="form-inline" action="<?php //echo esc_url(home_url('/')); 
+                                                                                    ?>" method="get">
+                                    <input class="form-control mr-sm-2" type="search" name="s" placeholder="Search" aria-label="Search">
+                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                                </form> -->
 
                             </nav>
                         </div>
