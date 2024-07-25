@@ -40,3 +40,31 @@ function register_news_post_type()
     register_post_type('news',$args);
 }
 add_action('init','register_news_post_type',0);
+
+function custom_widgets_init() {
+    register_sidebar( array(
+        'name'          => __( 'Custom Widget Area', 'monsoon-theme' ),
+        'id'            => 'custom-widget-area',
+        'before_widget' => '<div class="widget %2$s">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h2 class="widget-title">',
+        'after_title'   => '</h2>',
+    ) );
+}
+add_action( 'widgets_init', 'custom_widgets_init' );
+
+
+function custom_search_form( $form ) {
+    $form = '
+    <form role="search" method="get" class="search-form" action="' . home_url( '/' ) . '">
+        <label>
+            <span class="screen-reader-text">' . _x( 'Search for:', 'label' ) . '</span>
+            <input type="search" class="search-field" placeholder="' . esc_attr_x( 'Search …', 'placeholder' ) . '" value="' . get_search_query() . '" name="s" />
+        </label>
+        <input type="submit" class="search-submit" value="' . esc_attr_x( 'Search', 'submit button' ) . '" />
+    </form>';
+
+    return $form;
+}
+add_filter( 'get_search_form', 'custom_search_form' );
+
