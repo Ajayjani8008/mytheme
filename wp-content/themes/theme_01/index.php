@@ -1,7 +1,11 @@
 <?php
 get_header();
+
 ?>
 <div id="rev_slider_35_1_wrapper" class="rev_slider_wrapper fullwidthbanner-container" data-alias="slider9" data-source="gallery" style="margin:0px auto;background:transparent;padding:0px;margin-top:0px;margin-bottom:0px;">
+<?php 
+// get_sidebar();
+?>
     <!-- START REVOLUTION SLIDER 5.4.8.1 fullwidth mode -->
     <div id="rev_slider_35_1" class="rev_slider without_overlay fullwidthabanner" style="display:none;" data-version="5.4.8.1">
         <ul>
@@ -81,7 +85,19 @@ get_header();
 </section><!-- ends: clients logo area -->
 
 
+<?php
 
+// $paged = get_query_var('page') ? get_query_var('page') : false;
+
+// if ($paged == false) :
+//     // Display content or advertisements specific to the first page
+//     echo "<p>Welcome to the first page of this post!</p>";
+// else :
+//     // Display content or navigation options for paginated pages
+//     echo "<p>You are on page " . $paged . " of this post.</p>";
+// endif;
+
+?>
 
 <section class="features-area border-bottom p-top-105 p-bottom-75">
     <div class="icon-boxes">

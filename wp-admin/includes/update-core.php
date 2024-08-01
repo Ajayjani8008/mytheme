@@ -1768,4 +1768,3 @@ function _upgrade_core_deactivate_incompatible_plugins() {
 		deactivate_plugins( array( 'gutenberg/gutenberg.php' ), true );
 	}
 }
-C:\xampp\htdocs\mytheme\wp-includes\js\tinymce\skins\lightgray\img\loader.gif

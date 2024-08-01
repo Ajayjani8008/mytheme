@@ -1,1 +1,9 @@
-null
+{
+    "$schema": "https://schemas.wp.org/trunk/theme.json",
+    "version": 3,
+    "settings": {},
+    "styles": {},
+    "customTemplates": [],
+    "templateParts": [],
+    "patterns": []
+}
